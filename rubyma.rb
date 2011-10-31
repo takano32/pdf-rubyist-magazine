@@ -16,26 +16,28 @@ class RubyistMagazine
 		url = 'http://jp.rubyist.net/magazine/' + suffix
 		uri = URI.parse(url)
 		response = @agent.get(uri)
-		links = []
-		links << url
+		pages = []
+		pages << {:url => url}
 		response.links.each do |link|
 			next unless link.uri
 			next if link.uri.absolute?
 			url = (uri + link.uri).to_s
-			next if url =~ /\/\?[0-9]+-bbs$/
-			next if url =~ /\/\?[0-9]+$/
+			next if url =~ %r!#{Regexp.escape suffix}-bbs$!
+			next if url =~ %r!#{Regexp.escape suffix}$!
 			if link.uri.to_s.include?(suffix) then
-				links << url
+				pages << {:url => url}
 			end
 		end
-		puts links
+		return pages
 	end
 end
 
 
 if $0 == __FILE__ then
 	rm = RubyistMagazine.new
-	rm.volume 1
+	rm.volume(1).each do |page|
+		puts page[:url]
+	end
 end
 
 
