@@ -15,6 +15,9 @@ Pdftk
 
 http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
 
+::
+
+  pdftk 0035-* cat output rubyma-0035.pdf
 
 ToDo
 ====
