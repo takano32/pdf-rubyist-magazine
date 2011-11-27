@@ -26,3 +26,4 @@ http://jp.rubyist.net/magazine/
 
 http://snow-man.cc/almost/
 
+http://www.vyatta.com/download/docdl
