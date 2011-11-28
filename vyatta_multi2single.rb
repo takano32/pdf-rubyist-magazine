@@ -13,7 +13,7 @@ pages.each do |page|
 end
 
 pdfs = pages.map do |page|
-	page[:basename]
+	page[:basename] + '.pdf'
 end.join(' ')
 %x(cd ./out/vyatta && pdftk #{pdfs} cat output vyatta.pdf)
 
