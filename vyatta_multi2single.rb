@@ -12,3 +12,8 @@ pages.each do |page|
 	%x(wget '#{page[:url]}' -O ./out/vyatta/#{page[:basename]}.pdf)
 end
 
+pdfs = pages.map do |page|
+	page[:basename]
+end.join(' ')
+%x(cd ./out/vyatta && pdftk #{pdfs} cat output vyatta.pdf)
+
